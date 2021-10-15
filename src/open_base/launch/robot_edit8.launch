@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find open_base)/xacro/main3.urdf.xacro'" />
+
+  <!-- BEGIN ROBOT 1-->
+  <group ns="open_base1">
+     <param name="tf_prefix" value="robot1_tf" /> 
+    <include file="$(find open_base)/launch/one_robot_edit6.launch" >
+      <arg name="robot_name"  value="open_base1" />
+      <arg name="init_pose" value="-x 0.0 -y 0.0 -z 0" />
+    </include>
+    <node
+		name="odometry1"
+		pkg="open_base"
+		type="open_base_odometry1"
+		output="screen"
+		args="pose_cheat"
+	></node><!-- args="pose_cheat" -->
+  </group>
+
+  <!-- BEGIN ROBOT 2 -->
+  <group ns="open_base2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <include file="$(find open_base)/launch/one_robot_edit6.launch" >
+      <arg name="init_pose" value="-x 0 -y 0.5 -z 0" />
+      <arg name="robot_name"  value="open_base2" />
+    </include>
+    <node
+		name="odometry2"
+		pkg="open_base"
+		type="open_base_odometry2"
+		output="screen"
+		args="pose_cheat"
+	></node><!-- args="pose_cheat" -->
+  </group>
+
+  <!-- BEGIN ROBOT 3 -->
+  <group ns="open_base3">
+    <param name="tf_prefix" value="robot3_tf" />
+    <include file="$(find open_base)/launch/one_robot_edit6.launch" >
+      <arg name="init_pose" value="-x 0.25 -y 0.25 -z 0" />
+      <arg name="robot_name"  value="open_base3" />
+    </include>
+    <node
+		name="odometry3"
+		pkg="open_base"
+		type="open_base_odometry3"
+		output="screen"
+		args="pose_cheat"
+	></node><!-- args="pose_cheat" -->
+  </group>
+
+   <!-- BEGIN ROBOT 4 -->
+  <group ns="open_base4">
+    <param name="tf_prefix" value="robot4_tf" />
+    <include file="$(find open_base)/launch/one_robot_edit6.launch" >
+      <arg name="init_pose" value="-x 0.5 -y 0.25 -z 0" />
+      <arg name="robot_name"  value="open_base4" />
+    </include>
+    <node
+		name="odometry4"
+		pkg="open_base"
+		type="open_base_odometry4"
+		output="screen"
+		args="pose_cheat"
+	></node><!-- args="pose_cheat" -->
+  </group>
+</launch>

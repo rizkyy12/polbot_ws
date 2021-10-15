@@ -1,0 +1,2 @@
+open_base
+-DCATKIN_DEVEL_PREFIX=/home/rizky/polbot_ws/devel -DCMAKE_INSTALL_PREFIX=/home/rizky/polbot_ws/install -G Unix Makefiles

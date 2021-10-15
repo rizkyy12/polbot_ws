@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- No namespace here as we will share this description. 
+       Access with slash at the beginning -->
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find open_base)/xacro/main3.urdf.xacro'" />
+
+  <!-- BEGIN ROBOT 1-->
+  <group ns="open_base1">
+     <param name="tf_prefix" value="robot1_tf" /> 
+    <include file="$(find open_base)/launch/velocity_1robot.launch" >
+      <arg name="init_pose" value="-x 0 -y 2 -z 0" />
+      <arg name="robot_name"  value="open_base1" />
+    </include>
+
+    <include file="$(find open_base)/launch/gazebo_1robot.launch" >
+      <arg name="init_pose" value="-x 0 -y 2 -z 0" />
+      <arg name="robot_name"  value="open_base1" />
+    </include>
+  </group>
+
+   
+</launch>

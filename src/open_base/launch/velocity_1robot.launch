@@ -1,0 +1,60 @@
+<launch>
+
+    <arg name="robot_name"/>
+    <arg name="init_pose" />
+
+
+	<rosparam
+		file="$(find open_base)/config/joint4_velocity.yaml"
+		command="load"
+	/>
+	<arg
+		name="paused"
+		default="true"
+	/>
+
+
+	<node
+		name="controller_spawner"
+		pkg="controller_manager"
+		type="spawner"
+		respawn="false"
+		output="screen"
+		ns="$(arg robot_name)"
+            args="--namespace=/$(arg robot_name)
+            joint_state_controller
+            left_joint_velocity_controller
+            back_joint_velocity_controller
+            right_joint_velocity_controller"
+	/>
+	<node
+		name="odometry"
+		pkg="open_base"
+		type="open_base_odometry"
+		ns="$(arg robot_name)"
+		output="screen"
+		args="pose_cheat"
+	></node><!-- args="pose_cheat" -->
+	<node
+		name="kinematics"
+		pkg="open_base"
+		type="open_base_kinematics"
+		ns="$(arg robot_name)"
+		output="screen"
+	></node>
+	<node
+		name="encoder"
+		pkg="open_base"
+		type="open_base_sensor_encoder"
+		ns="$(arg robot_name)/sensor"
+		output="screen"
+	></node>
+	<node
+		name="main"
+		pkg="open_base"
+		type="open_base_main"
+		ns="$(arg robot_name)"
+		output="screen"
+	></node>
+
+</launch>

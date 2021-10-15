@@ -1,0 +1,36 @@
+<launch>
+
+    <arg name="robot_name"/>
+    <arg name="init_pose" />
+
+	<node
+		name="open_base_spawner"
+		pkg="gazebo_ros"
+		type="spawn_model"
+		args="-urdf -model robot -param robot_description -model $(arg robot_name) $(arg init_pose)"
+		ns="$(arg robot_name)"
+	/>
+	<!--node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose) -urdf -param /robot_description -model $(arg robot_name)" output="screen" /-->
+	<node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		respawn="false"
+		output="screen"
+		ns="$(arg robot_name)"
+	>
+
+		<param
+			name="publish_frequency"
+			type="double"
+			value="30.0"
+		/>
+		<remap
+			from="/joint_states"
+			to="/$(arg robot_name)/joint_states"
+		/>
+
+	</node>
+
+
+</launch>

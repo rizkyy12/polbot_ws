@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="robot_name"/>
+    <arg name="init_pose" />
+
+	
+    
+	
+ 	<!-- Load controllers -->
+     <rosparam file="$(find open_base)/config/joint6_velocity.yaml" command="load"/>
+     <arg
+		name="paused"
+		default="true"
+	/>
+
+     <!-- node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -x $(arg x) -y $(arg y) -z $(arg z) -model $(arg robot_name) -param /robot_description"/-->
+
+     <node name="open_base_spawner" pkg="gazebo_ros" type="spawn_model" args="$(arg init_pose) -urdf -param /robot_description -model $(arg robot_name)" output="screen" />
+     
+     <node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		respawn="false"
+		output="screen"
+	>
+
+		<param
+			name="publish_frequency"
+			type="double"
+			value="30.0"
+		/>
+		<remap
+			from="/joint_states"
+			to="/$(arg robot_name)/joint_states"
+		/>
+
+	</node>
+     <!--node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" output="screen"/-->
+     
+      	
+	
+
+    
+	 
+     <!--arg name="config_file" value="$(find open_base)/config/joint3_velocity.yaml" command="load"/
+     
+     <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="$(arg robot_name)" 
+	args="namespace=$(arg robot_name)
+	joint_state_controller
+	left_joint_velocity_controller
+	back_joint_velocity_controller
+	right_joint_velocity_controller
+	"/>-->
+
+    <node name="controller_node"
+            pkg="controller_manager"
+            type="spawner"
+            output="screen"
+            respawn="false"
+            args="--namespace=/$(arg robot_name)
+            joint_state_controller
+            left_joint_velocity_controller
+            back_joint_velocity_controller
+            right_joint_velocity_controller"/>
+  
+	<node
+		name="kinematics"
+		pkg="open_base"
+		type="open_base_kinematics"
+		output="screen"
+	></node>
+	<node
+		name="encoder"
+		pkg="open_base"
+		type="open_base_sensor_encoder"
+		output="screen"
+	></node>
+	<node
+		name="main"
+		pkg="open_base"
+		type="open_base_main"
+		output="screen"
+	></node>
+
+	
+ 
+
+</launch>
+
+

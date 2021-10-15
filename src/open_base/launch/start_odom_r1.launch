@@ -1,0 +1,5 @@
+<launch>
+    <node name="odom_pub_r1" pkg="open_base" type="odom_r1.py" output="screen" />
+    <node name="odom_pub_r2" pkg="open_base" type="odom_r2.py" output="screen" />
+    <node name="odom_pub_r3" pkg="open_base" type="odom_r3.py" output="screen" />
+</launch>    

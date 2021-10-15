@@ -1,0 +1,150 @@
+<launch>
+
+	<!--param
+		name="robot_description"
+		textfile="$(find open_base1)/urdf/description.urdf"
+	/-->
+	<param
+		name="open_base1/robot_description"
+		command="$(find xacro)/xacro '$(find open_base)/xacro/main3.urdf.xacro'"
+	/>
+	<!--param
+		name="open_base1/parameter/control/D"
+		value="0.0"
+	/>< PID -->
+	<!-- PID ROBOT 1-->
+	<param
+		name="open_base1/parameter/control/I"
+		value="0.0"
+	/><!-- PID -->
+	<param
+		name="open_base1/parameter/control/P"
+		value="37.0"
+	/><!-- PID -->
+	<param
+		name="open_base1/parameter/initial/x"
+		value="0.0"
+	/>
+	<param
+		name="open_base1/parameter/initial/y"
+		value="0.0"
+	/>
+	<param
+		name="open_base1/parameter/initial/theta"
+		value="0.0"
+	/>
+	<param
+		name="open_base1/parameter/max/omega"
+		value="50.0"
+	/><!-- set by experiments (rad/s) -->
+	<param
+		name="open_base1/parameter/max/v"
+		value="1.0"
+	/><!-- set by experiments (m/s) -->
+	<param
+		name="open_base1/parameter/stop/angle"
+		value="0.1"
+	/><!-- pi / 30 -->
+	<param
+		name="open_base1/parameter/stop/distance"
+		value="0.01"
+	/>
+	<param
+		name="open_base1/parameter/wheel/radius"
+		value="0.07725"
+	/>
+
+	<!-- PID ROBOT 2 YANG DICOBS-->
+	<param
+		name="open_base2/robot_description"
+		command="$(find xacro)/xacro '$(find open_base)/xacro/main3.urdf.xacro'"
+	/>
+	<param
+		name="open_base2/parameter/control/I"
+		value="0.0"
+	/><!-- PID -->
+	<param
+		name="open_base2/parameter/control/P"
+		value="37.0"
+	/><!-- PID -->
+	<param
+		name="open_base2/parameter/initial/x"
+		value="0.0"
+	/>
+	<param
+		name="open_base2/parameter/initial/y"
+		value="0.0"
+	/>
+	<param
+		name="open_base2/parameter/initial/theta"
+		value="0.0"
+	/>
+	<param
+		name="open_base2/parameter/max/omega"
+		value="200.0"
+	/><!-- set by experiments (rad/s) -->
+	<param
+		name="open_base2/parameter/max/v"
+		value="3.0"
+	/><!-- set by experiments (m/s) -->
+	<param
+		name="open_base2/parameter/stop/angle"
+		value="0.0"
+	/><!-- pi / 30 -->
+	<param
+		name="open_base2/parameter/stop/distance"
+		value="0.02"
+	/>
+	<param
+		name="open_base2/parameter/wheel/radius"
+		value="0.07725"
+	/>
+
+	<!-- PID ROBOT 3-->
+	<param
+		name="open_base3/robot_description"
+		command="$(find xacro)/xacro '$(find open_base)/xacro/main3.urdf.xacro'"
+	/>
+	<param
+		name="open_base3/parameter/control/I"
+		value="0.0"
+	/><!-- PID -->
+	<param
+		name="open_base3/parameter/control/P"
+		value="4.351"
+	/><!-- PID -->
+	<param
+		name="open_base3/parameter/initial/x"
+		value="0.0"
+	/>
+	<param
+		name="open_base3/parameter/initial/y"
+		value="0.0"
+	/>
+	<param
+		name="open_base3/parameter/initial/theta"
+		value="0.0"
+	/>
+	<param
+		name="open_base3/parameter/max/omega"
+		value="50.0"
+	/><!-- set by experiments (rad/s) -->
+	<param
+		name="open_base3/parameter/max/v"
+		value="1.0"
+	/><!-- set by experiments (m/s) -->
+	<param
+		name="open_base3/parameter/stop/angle"
+		value="0.1"
+	/><!-- pi / 30 -->
+	<param
+		name="open_base3/parameter/stop/distance"
+		value="0.001"
+	/>
+	<param
+		name="open_base3/parameter/wheel/radius"
+		value="0.07725"
+	/>
+
+
+</launch>
